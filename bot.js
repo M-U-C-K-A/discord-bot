@@ -3,7 +3,16 @@ import {config} from 'dotenv';
 
 config();
 
-console.log(process.env.SERVERID);
 const client = new Client({
     intents: [GatewayIntentBits.Guilds],
 })
+
+
+
+function readyDiscord() {
+    console.log('ready to connect :' + client.user.tag);
+}
+
+client.once(Events.ClientReady,readyDiscord);
+
+client.login(process.env.TOKEN);
